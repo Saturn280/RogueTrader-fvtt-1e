@@ -1,0 +1,9 @@
+
+{
+  "name": "rogue-trader-fvtt-1e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}

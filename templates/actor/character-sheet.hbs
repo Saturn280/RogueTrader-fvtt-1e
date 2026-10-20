@@ -1,0 +1,43 @@
+
+<form class="rt-character-sheet">
+  <h2>Персонаж Rogue Trader</h2>
+
+  <div class="form-group">
+    <label>Имя персонажа</label>
+    <input
+      type="text"
+      name="name"
+      value="{{actor.name}}"
+    />
+  </div>
+
+  <h3>Характеристики</h3>
+
+  <div class="characteristic">
+    <label for="weaponSkill">Ближний бой</label>
+    <input
+      id="weaponSkill"
+      type="number"
+      name="system.characteristics.weaponSkill"
+      value="{{actor.system.characteristics.weaponSkill}}"
+    />
+    <button type="button" data-characteristic="weaponSkill">
+      Бросить проверку
+    </button>
+  </div>
+
+  <div class="characteristic">
+    <label for="ballisticSkill">Баллистика</label>
+    <input
+      id="ballisticSkill"
+      type="number"
+      name="system.characteristics.ballisticSkill"
+      value="{{actor.system.characteristics.ballisticSkill}}"
+
+    />
+    <button type="button" data-characteristic="ballisticSkill">
+      Бросить проверку
+    </button>
+    <button type="submit">Сохранить</button>
+  </div>
+</form>

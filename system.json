@@ -10,6 +10,19 @@
     "minimum": "14",
     "verified": "14"
   },
+ "documentTypes": {
+  "Actor": {
+    "character": {},
+    "npc": {}
+  },
+  "Item": {
+    "weapon": {},
+    "armor": {},
+    "talent": {},
+    "skill": {},
+    "gear": {}
+  }
+},
 "flags": {
   "hotReload": {
     "extensions": [

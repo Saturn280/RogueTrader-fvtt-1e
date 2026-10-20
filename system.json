@@ -5,5 +5,9 @@
   "version": "0.1",
   "esmodules": [
     "rogue-trader.mjs"
-  ]
+  ],
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  }
 }

@@ -1,40 +1,50 @@
+import test from "node:test";
+import assert from "node:assert/strict";
 
-/**
- * Рассчитывает результат проверки Rogue Trader через d100.
- *
- * target — итоговое целевое значение проверки.
- * roll — результат броска от 1 до 100.
- *
- * Формула степеней успеха здесь предварительная:
- * её нужно сверить с твоей книгой правил FFG
- * перед тем, как считать её окончательной.
- */
-export function resolveCharacteristicTest(target, roll) {
-  if (!Number.isInteger(target) || target < 1 || target > 100) {
-    throw new RangeError("Target must be an integer from 1 to 100");
-  }
+import {
+  resolveCharacteristicTest
+} from "../module/rules/char-test.mjs";
 
-  if (!Number.isInteger(roll) || roll < 1 || roll > 100) {
-    throw new RangeError("Roll must be an integer from 1 to 100");
-  }
+test("roll below target is a success", () => {
+  const result = resolveCharacteristicTest(45, 32);
 
-  const success = roll <= target;
+  assert.equal(result.success, true);
+  assert.equal(result.degrees, 2);
+});
 
-  // Сравниваем десятки целевого значения и броска.
-  const targetTens = Math.floor(target / 10);
-  const rollTens = Math.floor(roll / 10);
+test("roll equal to target is a success", () => {
+  const result = resolveCharacteristicTest(45, 45);
 
-  const degrees = success
-    ? targetTens - rollTens + 1
-    : rollTens - targetTens + 1;
+  assert.equal(result.success, true);
+  assert.equal(result.degrees, 1);
+});
 
-  return {
-    target,
-    roll,
-    success,
-    degrees: Math.max(1, degrees)
-  };
-}
+test("roll above target is a failure", () => {
+  const result = resolveCharacteristicTest(45, 47);
+
+  assert.equal(result.success, false);
+  assert.equal(result.degrees, 1);
+});
+
+test("a very high roll can cause multiple failure degrees", () => {
+  const result = resolveCharacteristicTest(35, 78);
+
+  assert.equal(result.success, false);
+  assert.equal(result.degrees, 5);
+});
+
+test("invalid values are rejected", () => {
+  assert.throws(
+    () => resolveCharacteristicTest(45, 0),
+    RangeError
+  );
+
+  assert.throws(
+    () => resolveCharacteristicTest(101, 50),
+    RangeError
+  );
+});
+
 test("minimum roll is handled correctly", () => {
   const result = resolveCharacteristicTest(45, 1);
 

@@ -9,5 +9,21 @@
   "compatibility": {
     "minimum": "14",
     "verified": "14"
+  },
+"flags": {
+  "hotReload": {
+    "extensions": [
+      "mjs",
+      "js",
+      "css",
+      "html",
+      "hbs",
+      "json"
+    ],
+    "paths": [
+      "module",
+      "rogue-trader.mjs"
+    ]
   }
+}
 }

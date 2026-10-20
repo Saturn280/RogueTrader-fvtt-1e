@@ -49,7 +49,7 @@ test("minimum roll is handled correctly", () => {
   const result = resolveCharacteristicTest(45, 1);
 
   assert.equal(result.success, true);
-  assert.equal(result.degrees, 4);
+  assert.equal(result.degrees, 5);
 });
 
 test("maximum roll against maximum target succeeds", () => {

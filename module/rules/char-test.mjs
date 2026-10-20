@@ -10,28 +10,16 @@
  * перед тем, как считать её окончательной.
  */
 export function resolveCharacteristicTest(target, roll) {
-  if (!Number.isInteger(target) || target < 1 || target > 100) {
-    throw new RangeError("Target must be an integer from 1 to 100");
-  }
-
   if (!Number.isInteger(roll) || roll < 1 || roll > 100) {
     throw new RangeError("Roll must be an integer from 1 to 100");
   }
 
   const success = roll <= target;
-
-  // Сравниваем десятки целевого значения и броска.
-  const targetTens = Math.floor(target / 10);
-  const rollTens = Math.floor(roll / 10);
-
-  const degrees = success
-    ? targetTens - rollTens + 1
-    : rollTens - targetTens + 1;
-
+  const degrees = Math.floor(Math.abs(target-roll) / 10);
   return {
     target,
     roll,
     success,
-    degrees: Math.max(1, degrees)
+    degrees
   };
 }

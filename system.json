@@ -2,5 +2,8 @@
   "id": "roguetrader",
   "title": "Rogue Trader 1e",
   "description": "1111",
-  "version": "0.1"
+  "version": "0.1",
+  "esmodules": [
+    "rogue-trader.mjs"
+  ]
 }
